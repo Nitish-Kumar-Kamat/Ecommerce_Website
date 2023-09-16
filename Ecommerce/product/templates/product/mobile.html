@@ -1,0 +1,41 @@
+{% extends 'product/index.html' %}
+{% block one %}
+
+
+<div class="pt-5 my-4 text-center">
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="max" placeholder='Enter max value'> 
+        <input type="text" name="min" placeholder='Enter min value'>
+        <input type="submit" value="Filter">
+    </form>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+    {% for i in data %}
+    <div class="col-3 text-center">
+    <div class="card">
+    <a href="{% url 'mobileTask' i.id %}" class="btn">
+    <img class="card-img-top" alt="card-image" src="{{i.image.url}}" 
+    height="500px">
+        <h5 class="card-title text-uppercase">{{i.name}}</h5>
+        <p>Price: &#x20B9; {{i.price}} </p>
+        <p class="text-success">In Stock: {{i.quantity}} </p>     
+    </div>
+   </a>
+
+      <!--   <form action="" method="post">
+         {% csrf_token %}
+         <input type="number" name="req_quan" required> 
+         <input type="hidden" name="instock" value="{{i.quantity}}">
+               <input type="hidden" name="id_product" value="{{i.id}}">
+         <input type="submit" class="btn btn-primary" value="Add to Cart">
+            {% if Id == i.id %} {{msg}} {% endif %}
+       </form> -->
+
+        </div>
+        
+{% endfor %}
+</div>
+
+{% endblock one %}

@@ -1,0 +1,83 @@
+{% extends 'product/index.html' %}
+{% block one %}
+{% load static %}
+
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-6 text-center align-self-center">
+   <img src="{{data.image.url}}" alt="" class="img-fluid img-thumbnail">
+  </div>
+  <div class="col-sm-5 offset-sm-1 my-5">
+   <h2>{{data.name}}</h2>
+   <hr>
+   <p>{{data.desc}}</p>
+   <p class="text-success">In Stock: {{data.quantity}}</p>
+   <h4> &#x20B9; {{data.price}} <small class="fw-light text-decoration-line-through">{{data.selling_price}}</small></h4> <br>
+   <!-- <a href="#" class="btn btn-primary shadow px-5 py-2">Add to Cart</a> -->
+
+   {% comment %} Add to cart and Buy now buttons {% endcomment %}
+   <div class="container">
+    <div class="row">
+      <div class="col">
+    <form action=""  method="post">
+     		{% csrf_token %}
+
+         <input type="number" placeholder="Enter quantity" name="req_quan" required>
+     		<input type="hidden" name="instock" value="{{data.quantity}}">
+        <input type="hidden" name="id_product" value="{{data.id}}">
+     		<input type="submit" class="btn btn-primary shadow px-5 my-3 py-2" 
+         value="Add to Cart"> 
+
+         {% if Id == data.id %} 
+         <div class="alert alert-warning alert-dismissible fade show d-inline-flex" role="alert">
+         {{msg}}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+          {% endif %}
+ 
+       </form>
+       {% if msgg  %}
+         <div class="alert alert-primary alert-dismissible fade show d-inline-flex my-2" role="alert">
+        {{msgg}}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+          {% endif %}
+    </div>
+
+    <div class="col">
+     
+         <form action="{% url 'buy_now' data.id cat %}" method="post">
+          {% csrf_token %}
+          <input type="number" placeholder="Enter quantity" name="req_quan" required>
+          <input type="hidden" name="instock" value="{{data.quantity}}">
+          <input type="hidden" name="id_product" value="{{data.id}}">
+
+          <input type="hidden" name="cat_id" value="{{cat}}">  
+         
+          <input type="submit" class="btn btn-danger shadow px-5 my-3 py-2" value="Buy Now">
+
+          {% if myid == data.id %} 
+         <div class="alert alert-warning alert-dismissible fade show d-inline-flex" role="alert">
+         {{msg}}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+          {% endif %}
+        </form>
+    
+       </div>
+     </div>
+   </div>
+
+   <!-- <a href="#" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a> -->
+   <h5 class="mt-5">Available Offers</h5>
+   <ul>
+    <li>Bank Offer 5% Unlimited Cashback on NitishEShop Axis Bank Credit</li>
+    <li>Special Price Get extra ₹3000 off (price inclusive of discount)</li>
+    <li>No cost EMI ₹1,667/month. Standard EMI also available</li>
+    <li>Partner Offer ₹2000 NitishEShop Gift Card on Every 1000th Transaction with a new Visa Debit/Credit Card</li>
+   </ul>
+  </div>
+ </div>
+</div>
+
+{% endblock one %}

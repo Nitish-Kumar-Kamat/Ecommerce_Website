@@ -1,0 +1,87 @@
+{% extends 'product/index.html' %}
+{% block one %}
+{% load static %}
+<style>
+	
+.para{
+	text-align: justify;
+	margin: 30px;
+
+}
+.girlimg
+{
+	width: 100%;
+}
+.gimg{
+	width: 100%;
+	height: ;
+}
+.para2{
+	text-align: justify;
+	margin: 30px;
+}
+.navhover:hover{
+	color: red;
+}
+.tbody{
+	background-color: gray;
+}
+</style>
+	<div class="container pt-5 my-5">
+  <div class="row">
+    <div class="col">
+    <p class="para">
+    <h6>About us:</h6>
+      At NitishEShop, we believe that shopping should be an enjoyable and seamless experience for 
+      everyone.Our platform was born out of a passion for providing customers 
+      with a wide 
+      selection of high-quality products, exceptional service, and a user-friendly
+       interface. We aim to be your one-stop destination for all your shopping needs,
+        catering to diverse tastes and preferences.
+</p>
+
+<p class="para">
+<h6>Our Vision:</h6>
+Our vision is to redefine the online shopping experience by creating a 
+virtual marketplace that offers an extensive range of products from top brands 
+and trusted sellers. We envision a platform where customers can explore, compare, 
+and purchase products effortlessly, all in one place.
+</p>
+
+<p class="para">
+<h6>Our Mission:</h6>
+Our mission is to provide our customers with an unparalleled online shopping experience.
+ We strive to curate an extensive catalog of products that meet the highest standards
+  of quality and reliability. We are committed to fostering a customer-centric 
+  culture, where every interaction is personalized, and every query is met 
+  with prompt and helpful support.
+</p>
+<p class="para2">
+<h6>What Sets Us Apart:</h6>
+
+<h6>1.Vast Product Selection:</h6> 
+ We take pride in offering an extensive array of products across various 
+ categories, from electronics and fashion to home essentials and more.
+  Our curated selection ensures you find what you need, all under one digital roof.<br/><br/>
+
+<h6>2.Quality Assurance: </h6>
+We understand the importance of quality in your purchases. 
+That's why we work closely with reputable suppliers and brands to 
+guarantee that every item meets our stringent quality standards.<br/><br/>
+
+<h6>3.User-Friendly Interface: </h6>
+Navigating through our website is a breeze. With an intuitive interface, 
+smooth navigation, and powerful search filters, you can find your desired 
+products quickly and efficiently.
+</p>
+    </div>
+    <div class="col">
+      <img class="girlimg" src="{% static 'images/a2.jpg' %}"/>
+      <img class="gimg" src="{% static 'images/a3.jpg' %}"/>
+    </div>
+  </div>
+</div>
+</body>
+
+
+{% endblock one %}

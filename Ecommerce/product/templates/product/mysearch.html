@@ -1,0 +1,75 @@
+{% extends 'product/index.html' %}
+{% block one %}
+{% load static %}
+   
+    
+    {% if d1 %}
+    <div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+    {% for i in d1 %}
+    <div class="col-3 text-center">
+    <div class="card">
+      <a href="{% url 'prodetail' i.id %}" class="btn">
+    <img class="card-img-top" alt="card-image" src="{{i.image.url}}" 
+    height="200px">
+        <h5 class="card-title text-uppercase">{{i.name}}</h5>
+        <p>Price: &#x20B9; {{i.price}} </p>
+        <p class="text-success">In Stock: {{i.quantity}} </p>     
+    </div>
+    </a>
+    </div>
+        
+{% endfor %}
+{% endif %}
+
+{% if d2 %}
+<div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+    {% for i in d2 %}
+    <div class="col-3 text-center">
+    <div class="card">
+      <a href="{% url 'surfTask' i.id %}" class="btn">
+    <img class="card-img-top" alt="card-image" src="{{i.image.url}}" 
+    height="200px">
+        <h5 class="card-title text-uppercase">{{i.name}}</h5>
+        <p>Price: &#x20B9; {{i.price}} </p>
+        <p class="text-success">In Stock: {{i.quantity}} </p>     
+    </div>
+ </a>
+</div>
+        
+{% endfor %}
+{% endif %}
+
+{% if d3 %}
+<div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+    {% for i in d3 %}
+    <div class="col-3 text-center">
+    <div class="card">
+      <a href="{% url 'mobileTask' i.id %}" class="btn">
+    <img class="card-img-top" alt="card-image" src="{{i.image.url}}" 
+    height="500px">
+        <h5 class="card-title text-uppercase">{{i.name}}</h5>
+        <p>Price: &#x20B9; {{i.price}} </p>
+        <p class="text-success">In Stock: {{i.quantity}} </p>     
+    </div>
+ </a>
+</div>
+        
+{% endfor %}
+{% endif %}
+</div>
+
+
+
+
+{% if msg %}
+<div class="pt-5" style="width: 20rem; margin: auto;">
+  <img src="{% static 'images/error.png' %}" class="card-img-top my-5" alt="...">
+  <div class="card-body">
+   <h5><b>{{msg}}</b></h5>
+  </div>
+</div>
+<div class="pb-5" style="font-size: 18px;">
+ <p class="text-center text-secondary">Please check the spelling or try searching for something else</p>
+</div>
+{% endif %}
+{% endblock one %}

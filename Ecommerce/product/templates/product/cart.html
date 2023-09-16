@@ -1,0 +1,103 @@
+{% extends 'product/index.html' %}
+{% block one %}
+{% load static %}
+
+<div class="container my-5">
+  <div class="row">
+  <h1 class="text-center my-5">Shopping Cart</h1>
+  <div class="col-sm-8">
+  <div class="card">
+   <div class="card-body">
+    <h3>Cart</h3><hr>
+     {% for i,j,k in list_final %}
+      <div class="row">
+     <div class="col-sm-3 text-center align-self-center"><img src="{{i.image.url}}" alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150"
+     width="150"> 
+     </div>
+     <div class="col-sm-9">
+      <div>
+       <h5>{{i.name}}</h5>
+       <p class="mb-2 text-muted small">{{i.desc}}</p>
+        <h6>You orderd: {{j}}</h6>
+        
+        
+       <div class="d-flex justify-content-between pt-2">
+        <a href="{% url 'delete' %}" class="btn btn-sm btn-secondary mr-3">Remove item </a>
+        
+        <p class="mb-0"><span><strong> &#x20B9; {{k}}</strong></span></p>
+       </div>
+    </div>
+    </div>
+ </div>
+ <hr>
+    {% endfor %}
+  </div>
+</div>
+</div>
+
+
+  <div class="col-sm-4">
+   <div class="card">
+    <div class="card-body">
+      <h3>The Total Amount of</h3>
+      <ul class="list-group">
+       <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">Amount<span> &#x20B9; {{GT}}</span></li>
+       <li class="list-group-item d-flex justify-content-between align-items-center px-0">Delivery Charges<span> &#x20B9; 40.00</span></li>
+       <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+        <div>
+           <strong>Total Amount</strong>
+         </div>
+         <span><strong> &#x20B9; {{dcharge}}</strong></span>
+       </li>
+      </ul>
+      <div>
+        <form action="{% url 'afterclickplace' %}" method="post" class="d-grid">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-primary" value="Make Payment">
+        </form>
+
+        {% if payment %} 
+        <form action="{% url 'paymentdone' %}" method="post">    
+          <script
+              src="https://checkout.razorpay.com/v1/checkout.js"
+              data-key="rzp_test_YOZmSe3bpko5fp"
+              data-amount="{{payment.amount}}" 
+              data-currency="{{payment.currency}}"
+              data-order_id="{{payment.id}}"
+              data-buttontext="Pay with Razorpay"
+              data-name="Item Corp"
+              data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami"
+              data-image="https://example.com/your_logo.jpg"
+              data-prefill.name="{{payment.user}}"
+              data-prefill.email="you@example.com"
+              data-theme.color="#F37254">
+          </script>
+          <input type="hidden" custom="Hidden Element" name="hidden">        
+          </form>
+        {% endif %}
+ 
+ 
+      </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- payment -->
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-8">
+   <div class="card">
+    <div class="card-body">
+      <h5 class="mb-4">We accept</h5>
+      <img src="{% static 'images/payment/pay.png' %}" alt="" class="img-fluid">
+    </div>
+  </div>
+  </div>
+ </div>
+</div>
+  
+
+{% endblock one %}

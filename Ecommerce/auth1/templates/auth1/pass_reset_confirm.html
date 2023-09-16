@@ -1,0 +1,38 @@
+{% extends 'product/index.html' %}
+{% block one %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reset page</title>
+   <style>
+       body{
+        background-color: cyan;
+      }
+   </style>
+</head>
+<body>
+     <div class="container pt-5">
+      <div class="row my-3">
+         <div class="col-sm-6 offset-sm-3 shadow-lg p-3 mb-5 bg-body rounded">
+            <h3 class="text-center">Password Confirm</h3>
+            <hr>
+            <form action="" method="post">
+         {% csrf_token %}
+         
+         {% for i in fm %}
+            {{i.label_tag}} {{i}} <small class="text-danger">{{i.errors | striptags}}</small> <br>
+
+         {% endfor %}
+         <input type="submit" class="btn btn-primary my-3" value="Submit">
+        </form>
+         </div>   
+      </div>   
+     </div>  
+                                      
+</body>
+</html>
+
+{% endblock one %}
